@@ -1,0 +1,24 @@
+{% extends "base3.html.twig" %}
+
+{% block title %}Deck Cards{% endblock %}
+
+{% block main %}
+
+    <h1>Deck</h1>
+    <div class="card-row">
+        {% for suit, values in groupedCards %}
+            {% for value in values %}
+                <span class='card'>{{ value }}</span>
+                {% if loop.parent.loop.last and loop.last %}
+                    {% for _ in 1..((13 - loop.length) % 13) %}
+                        <span class="empty-card"></span>
+                    {% endfor %}
+                {% elseif loop.index % 13 == 0 %}
+                    </div><div class="card-row">
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+{% endblock %}
+

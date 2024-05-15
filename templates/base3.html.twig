@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('img/glider.svg') }}">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li class='item-1'><a href="{{ path('card_start') }}">Card Game</a></li>
+                <li class='item-2'><a href="{{ path('card_deck') }}">Card Deck</a></li>
+                <li class='item-3'><a href="{{ path('card_shuffle') }}">Shuffle Card</a></li>
+                <li class='item-4'><a href="{{ path('card_draw') }}">Draw Card</a></li>
+            </ul>
+        </nav>
+    </body>
+     <main>
+        {% block main %}{% endblock %}
+     </main>
+    <footer>
+
+    </footer>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'base3.html.twig' %}
+
+{% block title %}Session Debug{% endblock %}
+
+{% block main %}
+
+    <h1>Session Debug</h1>
+    {{ include('card/flash.html.twig') }}
+    <div>
+        {% if deck is not null and hand is not null %}
+            {% if deck.getCards()|length == 0 and hand.getCards()|length == 0 %}
+                <p>Session is empty</p>
+            {% else %}
+                <h2>Deck</h2>
+                <ul>
+                    {% for card in deck.getCards() %}
+                        <li>{{ card.getAsString() }}</li>
+                    {% endfor %}
+                </ul>
+                <h2>Hand</h2>
+                <ul>
+                    {% for card in hand.getCards() %}
+                        <li>{{ card.getAsString() }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% else %}
+            <p>Session is empty</p>
+        {% endif %}
+            </div>
+
+{% endblock %}

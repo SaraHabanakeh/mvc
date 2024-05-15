@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Om MVC{% endblock %}
+
+{% block main %}
+<div style="display: flex;">
+    <div style="flex: 1; margin-top: 80px;">
+        <a href="https://github.com/dbwebb-se/mvc/tree/main/example/symfony">
+            <i class="fab fa-github"></i> kursens Git-repo
+        </a><br>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                <a href="https://github.com/SaraHabanakeh">
+            <i class="fab fa-github"></i> Mitt Git-repo
+        </a>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    </div>
+    <div style="flex: 1; margin-right: 50px;">
+        <h2>Om MVC:</h2>
+        <p style="width: 400px">
+            MVC står för Model-View-Controller och är en vanlig arkitekturdesign för att organisera kod i många mjukvaruapplikationer, inklusive webbapplikationer. Här är en kort förklaring av varje del:<br><br>
+
+            <strong>Model (Modell):</strong><br>
+            Modellen representerar applikationens data och affärslogik.
+            Den hanterar läsning, skrivning och validering av data.
+            Modellen är oberoende av användargränssnittet och hanterar inte presentationen av data.<br><br>
+
+            <strong>View (Vy):</strong><br>
+            Vyn är ansvarig för att visa information för användaren.
+            Den presenterar data från modellen på ett sätt som är läsbart och användbart för användaren.
+            Vyn ska vara passiv och inte direkt interagera med modellen eller utföra någon affärslogik.<br><br>
+
+            <strong>Controller (Kontrollant):</strong><br>
+            Kontrollanten fungerar som mellanhand mellan modellen och vyn.
+            Den tar emot användaråtgärder från vyn och vidarebefordrar dem till modellen för bearbetning.
+            Kontrollanten kan uppdatera modellen baserat på användaråtgärder och bestämmer vilken vy som ska visas för användaren som svar på dessa åtgärder.
+        </p>
+    </div>
+  
+</div>
+        <img src="{{ asset('img/mvc.png') }}" alt="Description of your image" class='img2'>
+
+{% endblock %}

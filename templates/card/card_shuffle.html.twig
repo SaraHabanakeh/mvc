@@ -1,0 +1,17 @@
+{% extends "base3.html.twig" %}
+
+{% block title %}Shuffle Cards{% endblock %}
+
+{% block main %}
+
+    <h1>Shuffle Deck</h1>
+    <div class="card-row">
+        {% for card in shuffledCards %}
+            <span class='card'>{{ card.getAsString() }}</span>
+            {% if loop.index % 13 == 0 %}
+                </div><div class="card-row">
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

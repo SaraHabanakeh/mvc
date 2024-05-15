@@ -1,0 +1,12 @@
+tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --dry-run
+// eller den 
+composer run csfix:dry 
+
+//fixar kod stilen
+tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --dry-run -v
+
+
+//du kan anvanda den istallet for att fixa koden 
+composer run csfix
+
+
