@@ -10,3 +10,9 @@ tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --dry-run -v
 composer run csfix
 
 
+composer validate
+
+//If all seems ok you should be able to execute the tools like this.
+composer phpmd
+composer phpstan
+composer lint
