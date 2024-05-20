@@ -50,7 +50,6 @@ class DeckOfCards
         shuffle($this->cards);
     }
 
-
     public function drawCard(): ?Card
     {
         return array_pop($this->cards);
@@ -62,4 +61,8 @@ class DeckOfCards
         return count($this->cards);
     }
 
+    public function dealCards(): ?Card
+    {
+        return array_pop($this->cards);
+    }
 }

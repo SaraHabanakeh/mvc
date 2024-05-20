@@ -7,7 +7,7 @@
     <h1>Shuffle Deck</h1>
     <div class="card-row">
         {% for card in shuffledCards %}
-            <span class='card'>{{ card.getAsString() }}</span>
+            <span class= "card {{ card.getSuitClass() }}">{{ card.getAsString() }}</span>
             {% if loop.index % 13 == 0 %}
                 </div><div class="card-row">
             {% endif %}

@@ -1,0 +1,28 @@
+{% extends "base4.html.twig" %}
+
+{% block title %}Black Jack{% endblock %}
+
+{% block main %}
+    <h1>Setup Players</h1>
+    <form action="{{ path('game_start') }}" method="post">
+        <h2>Player 1</h2>
+        <label for="player1_name">Name:</label>
+        <input type="text" id="player1_name" name="players[0][name]" required>
+        <label for="player1_balance">Balance:</label>
+        <input type="number" id="player1_balance" name="players[0][balance]" required>
+
+        <h2>Player 2</h2>
+        <label for="player2_name">Name:</label>
+        <input type="text" id="player2_name" name="players[1][name]" required>
+        <label for="player2_balance">Balance:</label>
+        <input type="number" id="player2_balance" name="players[1][balance]" required>
+
+        <h2>Player 3</h2>
+        <label for="player3_name">Name:</label>
+        <input type="text" id="player3_name" name="players[2][name]" required>
+        <label for="player3_balance">Balance:</label>
+        <input type="number" id="player3_balance" name="players[2][balance]" required>
+
+        <button type="submit">Start Game</button>
+    </form>
+{% endblock %}

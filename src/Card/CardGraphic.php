@@ -87,4 +87,8 @@ class CardGraphic extends Card
         }
     }
 
+    public function getSuitClass(): string
+    {
+        return $this->getSuit();
+    }
 }

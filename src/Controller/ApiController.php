@@ -17,26 +17,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ApiController
 {
-    #[Route("/api", name: 'api')]
-    public function getAllRoutes(): Response
-    {
-        $routes = [
-            'api/quote' => 'Today\'s quote',
-            'api/deck' => 'Deck of cards.',
-            'api/deck/shuffle' => 'Shuffled deck.',
-            'api/deck/draw/0' => 'Draw a specific number of cards.',
-        ];
-
-        $html = '<ul>';
-        foreach ($routes as $route => $description) {
-            $html .= "<li><a href=\"$route\">$description</a></li>";
-        }
-        $html .= '</ul>';
-
-        return new Response($html);
-    }
-
-    #[Route("/api/quote")]
+ 
+    #[Route("/api/quote", name: "api-quote")]
     public function getDailyQuote(): Response
     {
         $quotes = [
@@ -64,7 +46,7 @@ class ApiController
     }
 
 
-    #[Route("/api/deck")]
+    #[Route("/api/deck", name:"api-deck")]
     public function getDeck(): JsonResponse
     {
         $deck = new DeckOfCards();
@@ -79,7 +61,7 @@ class ApiController
         return new JsonResponse($json, JsonResponse::HTTP_OK, [], true);
     }
 
-    #[Route("/api/deck/shuffle", methods: ['POST', 'GET'])]
+    #[Route("/api/deck/shuffle", name:"api-shuffle", methods: ['POST', 'GET'])]
     public function getShuffleCards(Request $request, SessionInterface $session): Response
     {
 

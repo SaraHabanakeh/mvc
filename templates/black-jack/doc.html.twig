@@ -1,0 +1,36 @@
+{% extends "base4.html.twig" %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block main %}
+<h1>Black Jack Game:</h1>
+<h3> Pseudokod:</h3>
+<p>1.Skapa ett formulär för att mata in spelarnas namn och balans:<br>
+
+Använd ett HTML-formulär för att samla in spelarnas namn och balans och skicka data till servern.<br></p>
+<p>
+2.Starta spelet:<br>
+
+När spelarna har angett sina namn och balans, starta spelet genom att skapa en kortlek och blanda den.<br></p>
+<p>
+3.Implementera en funktion i Card-klassen för att beräkna kortens värde enligt Blackjack-spelet:<br>
+
+Lägg till en funktion i Card-klassen som kan räkna värdet på ett kort baserat på Blackjack-reglerna.<br></p>
+
+<p>
+4.Skapa en spelarklass och implementera nödvändiga funktioner för att kontrollera spelarens status:<br>
+
+Implementera funktioner i Player-klassen för att kontrollera om spelaren är busted eller har blackjack, få balansen, räkna totala handvärdet etc.<br></p>
+<p>5.Skapa huvudkontrollern för spelet:<br>
+
+Skapa en huvudkontroller för spelet som hanterar flödet av spelet.<br>
+.Initialisera spelarna med sina namn och balans.<br>
+.Distribuera kort till spelarna och dealern.<br>
+.Låt spelarna göra sina drag (Hit eller Stay).<br>
+.Låt dealern göra sina drag (dra kort tills totala värdet är minst 17).<br>
+.Jämför händerna och deklarera en vinnare eller oavgjort.<br>
+.Uppdatera spelarnas balans baserat på resultatet av rundan.<br>
+.Tillåt spelare att starta en ny omgång eller avsluta spelet.<br></p>
+
+<img src="{{ asset('img/blackjack.png') }}" alt="Description of your image" class='img2'>
+{% endblock %}

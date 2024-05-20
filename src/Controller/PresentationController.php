@@ -37,4 +37,10 @@ class PresentationController extends AbstractController
 
         ]);
     }
+
+    #[Route('/api', name:'api')]
+    public function api(): Response
+    {
+        return $this->render('home/api.html.twig');
+    }
 }

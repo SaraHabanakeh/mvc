@@ -29,5 +29,13 @@
     <p>Komposition (Composition):
     Komposition innebär att en klass använder en instans av en annan klass som en av sina medlemmar. Detta ger flexibilitet genom att tillåta konstruktion av komplexa objekt genom att kombinera mindre komponenter. I PHP skapas komposition genom att skapa instanser av andra klasser inuti den aktuella klassen.</p>
 
-    <p>
+    <p>Jag löste uppgiften genom att skapa fyra huvudklasser: Card, CardGraphic, DeckOfCards, och en controller-klass för spelet. Varje klass hade sin specifika uppgift och samverkade för att hantera kortspel.
+
+Card representerade en enskild spelkort och innehöll information om dess svit och värde, samt en metod för att få dess strängrepresentation.
+
+CardGraphic var en underklass av Card som utökade funktionaliteten genom att lägga till grafisk representation för varje kort, med hjälp av emojis för att representera kortets svit och värde.
+
+DeckOfCards representerade en hel kortlek och skapade en ny kortlek med alla fyra sviterna och 13 värden (från 1 till 13). Den innehöll också metoder för att hantera kortleken som att hämta, sortera, blanda och dra kort från leken.
+
+Jag är generellt nöjd med min implementation eftersom den uppfyller kraven för att hantera ett kortspel.</p>
 {% endblock %}

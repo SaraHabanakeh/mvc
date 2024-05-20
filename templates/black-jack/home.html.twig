@@ -1,0 +1,62 @@
+{% extends "base4.html.twig" %}
+
+{% block title %}Black Jack{% endblock %}
+
+{% block main %}
+    <h1>Black Jack Game</h1>
+    <h2>Players</h2>
+    <ul>
+        {% for player in players %}
+            <li>
+                <strong>{{ player.getName() }}</strong><br>
+                Balance: {{ player.getBalance() }}<br>
+                {% for card in player.getHand().getCards() %}
+                    <span class="card {{ card.getSuitClass() }}">{{ card.getAsString() }}</span>
+                {% endfor %}
+                <br>
+                Total Value: {{ player.getHandValue() }}
+                <br>
+                {% if player.getStatus() != 'done' %}
+                    <form action="{{ path('game_hit', {'playerIndex': loop.index0}) }}" method="post" style="display:inline;">
+                        <button class="button" type="submit">Hit</button>
+                    </form>
+                    <form action="{{ path('game_stay', {'playerIndex': loop.index0}) }}" method="post" style="display:inline;">
+                        <button class="button" type="submit">Stay</button>
+                    </form>
+                {% else %}
+                    {% if player.isBusted() %}
+                        <p>Busted!</p>
+                    {% elseif player.hasBlackJack() %}
+                        <p>Blackjack!</p>
+                    {% endif %}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+
+    {% set allPlayersDone = true %}
+    {% for player in players %}
+        {% if player.getStatus() != 'done' %}
+            {% set allPlayersDone = false %}
+        {% endif %}
+    {% endfor %}
+
+    {% if allPlayersDone %}
+        <form action="{{ path('game_dealer') }}" method="post" style="display:inline;">
+            {{ include('black-jack/flash.html.twig') }}
+        </form>
+    {% endif %}
+
+    <h2>Bank</h2>
+    <ul>
+        <li>
+            Balance: {{ bank.getBalance() }}<br>
+            {% for card in bank.getHand().getCards() %}
+                <span class="card {{ card.getSuitClass() }}">{{ card.getAsString() }}</span>
+            {% endfor %}
+            <br>
+            Total Value: {{ bank.getHandValue() }}
+        </li>
+    </ul>
+{% endblock %}

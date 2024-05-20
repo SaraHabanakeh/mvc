@@ -9,7 +9,7 @@
         <h2>Drawn Cards:</h2>
         <ul>
             {% for card in drawnCards %}
-                <li class='card'>{{ card.getAsString() }}</li>
+                <li class="card {{ card.getSuitClass() }}">{{ card.getAsString() }}</li>
 
             {% endfor %}
         </ul>
