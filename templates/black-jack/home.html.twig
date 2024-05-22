@@ -3,13 +3,12 @@
 {% block title %}Black Jack{% endblock %}
 
 {% block main %}
-    <h1>Black Jack Game</h1>
-    <h2>Players</h2>
+<h2>Players</h2>
     <ul>
         {% for player in players %}
-            <li>
+            <li class="player">
                 <strong>{{ player.getName() }}</strong><br>
-                Balance: {{ player.getBalance() }}<br>
+                Balance: {{ player.getBalance() }} <div class="coin">{{ player.getBalanceGraphic() }}</div><br>
                 {% for card in player.getHand().getCards() %}
                     <span class="card {{ card.getSuitClass() }}">{{ card.getAsString() }}</span>
                 {% endfor %}
@@ -34,7 +33,6 @@
         {% endfor %}
     </ul>
 
-
     {% set allPlayersDone = true %}
     {% for player in players %}
         {% if player.getStatus() != 'done' %}
@@ -46,17 +44,25 @@
         <form action="{{ path('game_dealer') }}" method="post" style="display:inline;">
             {{ include('black-jack/flash.html.twig') }}
         </form>
+        <form action="{{ path('game_reset') }}" method="post">
+            <button type="submit">Play Again</button>
+        </form>
     {% endif %}
-
+    <div class="bank">
     <h2>Bank</h2>
     <ul>
         <li>
-            Balance: {{ bank.getBalance() }}<br>
+            Balance: {{ bank.getBalance() }} <span class="coin">{{ bank.getBalanceGraphic() }}</span><br>
             {% for card in bank.getHand().getCards() %}
-                <span class="card {{ card.getSuitClass() }}">{{ card.getAsString() }}</span>
+                {% if loop.first or allPlayersDone %}
+                    <span class="card {{ card.getSuitClass() }}">{{ card.getAsString() }}</span>
+                {% else %}
+                    <span class="card back"></span>
+                {% endif %}
             {% endfor %}
             <br>
-            Total Value: {{ bank.getHandValue() }}
+            Total Value: {{ allPlayersDone ? bank.getHandValue() : '🂠' }}
         </li>
     </ul>
+    </div>
 {% endblock %}

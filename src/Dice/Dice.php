@@ -4,7 +4,10 @@ namespace App\Dice;
 
 class Dice
 {
-    protected $value;
+    /**
+     * @var int|null
+     */
+    protected ?int $value;
 
     public function __construct()
     {
@@ -19,11 +22,14 @@ class Dice
 
     public function getValue(): int
     {
+        if ($this->value === null) {
+            throw new \LogicException("Dice value has not been set. Roll the dice first.");
+        }
         return $this->value;
     }
 
     public function getAsString(): string
     {
-        return "[{$this->value}]";
+        return $this->value !== null ? "[{$this->value}]" : "[ ]";
     }
 }

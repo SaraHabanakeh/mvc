@@ -6,12 +6,14 @@
 
 namespace App\Dice;
 
-// Denna rad importerar klassen Dice från namespace App\Dice
 use App\Dice\Dice;
 
 class DiceHand
 {
-    private $hand = [];
+    /**
+     * @var Dice[]
+     */
+    private array $hand = [];
 
     public function add(Dice $die): void
     {
@@ -30,6 +32,9 @@ class DiceHand
         return count($this->hand);
     }
 
+    /**
+     * @return int[]
+     */
     public function getValues(): array
     {
         $values = [];
@@ -39,6 +44,9 @@ class DiceHand
         return $values;
     }
 
+    /**
+     * @return string[]
+     */
     public function getString(): array
     {
         $values = [];

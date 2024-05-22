@@ -4,10 +4,10 @@ namespace App\Card;
 
 class Card
 {
-    private $suit;
-    private $value;
+    private string $suit;
+    private int $value;
 
-    public function __construct($suit, $value)
+    public function __construct(string $suit, int $value)
     {
         $this->suit = $suit;
         $this->value = $value;
@@ -22,7 +22,6 @@ class Card
     {
         return $this->value;
     }
-
 
     public function getAsString(): string
     {
@@ -40,5 +39,4 @@ class Card
         // Ace (represented by 1) can be 1 or 11, but the logic to choose 1 or 11 is handled elsewhere
         return $this->value;
     }
-
 }

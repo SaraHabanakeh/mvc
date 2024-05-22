@@ -6,8 +6,9 @@ use App\Card\Card;
 
 class CardGraphic extends Card
 {
-    private $representation = [
-
+    /** @var array<string, array<int, string>> */
+    private array $representation = [
+        // Define the representation array
         'diamond' => [
             '1' => '🃁',
             '2' => '🃂',
@@ -23,7 +24,6 @@ class CardGraphic extends Card
             '12' => '🃍',
             '13' => '🃎',
         ],
-
         'clover' => [
             '1' => '🃑',
             '2' => '🃒',
@@ -39,7 +39,6 @@ class CardGraphic extends Card
             '12' => '🃝',
             '13' => '🃞',
         ],
-
         'heart' => [
             '1' => '🂱',
             '2' => '🂲',
@@ -55,7 +54,6 @@ class CardGraphic extends Card
             '12' => '🂽',
             '13' => '🂾',
         ],
-
         'spades' => [
             '1' => '🂡',
             '2' => '🂢',
@@ -73,12 +71,10 @@ class CardGraphic extends Card
         ],
     ];
 
-
     public function getAsString(): string
     {
         $suit = $this->getSuit();
         $value = $this->getValue();
-
 
         if (isset($this->representation[$suit][$value])) {
             return $this->representation[$suit][$value];

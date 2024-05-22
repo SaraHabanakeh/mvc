@@ -111,7 +111,7 @@ h1 {
 }
 
 .heart, .diamond {
-  color: red;
+  color: rgb(208, 0, 0);
 }
 .spades, .clover {
   color: black;
@@ -125,3 +125,27 @@ h1 {
   color: gray;
 }
 
+.player {
+  margin-left:10%;
+}
+
+.button {
+  background-color: rgb(242, 192, 99);
+  
+}
+
+.coin {
+  color: rgb(141, 35, 35);
+}
+
+.black {
+  margin-bottom: 400px;
+  background-color: rgb(183, 207, 150);
+  padding: 10%;
+
+
+}
+
+.bank {
+  margin-left: 40%;
+}

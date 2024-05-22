@@ -4,13 +4,11 @@
 
 {% block main %}
 
-<h2>Api Controll:</h2>
-<h5> Quote:</h5><p>Get a random daily quote.</p>
-<h5> Cards:</h5><p>Get a sorted deck of cards.</p>
-<h5> Shuffle:</h5><p>Shuffle the deck of cards.</p>
-<h5> Draw:</h5><p>Draw card/cards from the deck.</p>
-<h5> Game:</h5><p>.</p>
-
-
+<h2>Json Api Routes:</h2>
+<a href="{{ path('api-quote') }}">Quote:</a><p>Get a random daily quote.</p>
+<a href="{{ path('api-deck') }}">Cards:</a><p>Get a sorted deck of cards.</p>
+<a href="{{ path('api-shuffle') }}">shuffle</a><p>Shuffle the deck of cards.</p>
+<a href="{{ path('api_draw_cards', { 'number': 0 }) }}">Draw</a><p>Draw card/cards from the deck.</p>
+<a href="{{ path('api_game') }}">Game</a><p>Displays game status</p>
 
 {% endblock %}

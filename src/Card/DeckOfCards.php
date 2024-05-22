@@ -7,7 +7,8 @@ use App\Card\CardGraphic;
 
 class DeckOfCards
 {
-    private $cards = [];
+    /** @var Card[] */
+    private array $cards = [];
 
     public function __construct()
     {
@@ -22,12 +23,17 @@ class DeckOfCards
         }
     }
 
+    /**
+     * @return Card[]
+     */
     public function getCards(): array
     {
         return $this->cards;
     }
 
-
+    /**
+     * @return array<string, array<int, string>>
+     */
     public function getSortedCards(): array
     {
         $cards = $this->getCards();
@@ -41,6 +47,7 @@ class DeckOfCards
             $representation = $cardGraphic->getAsString();
             $sortedCards[$suit][$value] = $representation;
         }
+
         return $sortedCards;
     }
 
@@ -54,7 +61,6 @@ class DeckOfCards
     {
         return array_pop($this->cards);
     }
-
 
     public function countCards(): int
     {

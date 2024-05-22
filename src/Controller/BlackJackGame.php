@@ -4,14 +4,24 @@ namespace App\Controller;
 
 use App\Card\DeckOfCards;
 use App\Card\Player;
+use App\Card\Card;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use LogicException;
 
 class BlackJackGame extends AbstractController
 {
+    #[Route("/game/reset", name: "game_reset", methods: ["POST"])]
+    public function reset(SessionInterface $session): Response
+    {
+        $session->clear();
+        return $this->redirectToRoute("game_setup");
+    }
+
     #[Route("game/", name: "game-page")]
     public function home(): Response
     {
@@ -34,7 +44,6 @@ class BlackJackGame extends AbstractController
     public function start(Request $request, SessionInterface $session): Response
     {
         $playerData = $request->request->all('players');
-
         $players = [];
         foreach ($playerData as $data) {
             $players[] = new Player($data['name'], (int)$data['balance']);
@@ -46,8 +55,8 @@ class BlackJackGame extends AbstractController
         $bank = new Player('Bank');
 
         foreach ($players as $player) {
-            $player->addCard($deck->drawCard());
-            $player->addCard($deck->drawCard());
+            $this->addCardToPlayer($player, $deck);
+            $this->addCardToPlayer($player, $deck);
 
             if ($player->hasBlackJack()) {
                 $player->adjustBalance($player->getBalance() * 1.5);
@@ -55,8 +64,8 @@ class BlackJackGame extends AbstractController
             }
         }
 
-        $bank->addCard($deck->drawCard());
-        $bank->addCard($deck->drawCard());
+        $this->addCardToPlayer($bank, $deck);
+        $this->addCardToPlayer($bank, $deck);
 
         $session->set('deck', $deck);
         $session->set('players', $players);
@@ -75,8 +84,12 @@ class BlackJackGame extends AbstractController
         $players = $session->get('players');
         $bank = $session->get('bank');
 
+        if (!is_array($players) || !$deck instanceof DeckOfCards || !$bank instanceof Player) {
+            throw new LogicException('Session data is corrupted.');
+        }
+
         $player = $players[$playerIndex];
-        $player->addCard($deck->drawCard());
+        $this->addCardToPlayer($player, $deck);
 
         if ($player->isBusted()) {
             $bank->adjustBalance($player->getBalance());
@@ -104,6 +117,10 @@ class BlackJackGame extends AbstractController
         $players = $session->get('players');
         $bank = $session->get('bank');
 
+        if (!is_array($players) || !$bank instanceof Player) {
+            throw new LogicException('Session data is corrupted.');
+        }
+
         $player = $players[$playerIndex];
         $player->setStatus('done');
 
@@ -126,23 +143,25 @@ class BlackJackGame extends AbstractController
         $players = $session->get('players');
         $bank = $session->get('bank');
 
-
-        while ($bank->getHandValue() < 17) {
-            $bank->addCard($deck->drawCard());
+        if (!is_array($players) || !$deck instanceof DeckOfCards || !$bank instanceof Player) {
+            throw new LogicException('Session data is corrupted.');
         }
 
+        while ($bank->getHandValue() < 17) {
+            $this->addCardToPlayer($bank, $deck);
+        }
 
         if ($bank->isBusted()) {
             foreach ($players as $player) {
                 if (!$player->isBusted()) {
-                    $player->adjustBalance($player->getBalance() * 2);
+                    $player->adjustBalance($player->getBalance());
                 }
             }
         } else {
             foreach ($players as $player) {
                 if (!$player->isBusted()) {
                     if ($player->getHandValue() > $bank->getHandValue()) {
-                        $player->adjustBalance($player->getBalance() * 2);
+                        $player->adjustBalance($player->getBalance());
                     } else {
                         $bank->adjustBalance($player->getBalance());
                         $player->adjustBalance(-$player->getBalance());
@@ -162,6 +181,9 @@ class BlackJackGame extends AbstractController
         ]);
     }
 
+    /**
+     * @param Player[] $players
+     */
     private function areAllPlayersDone(array $players): bool
     {
         foreach ($players as $player) {
@@ -170,5 +192,35 @@ class BlackJackGame extends AbstractController
             }
         }
         return true;
+    }
+
+    private function addCardToPlayer(Player $player, DeckOfCards $deck): void
+    {
+        $card = $deck->drawCard();
+        if (!$card instanceof Card) {
+            throw new LogicException('Failed to draw a card from the deck.');
+        }
+        $player->addCard($card);
+    }
+
+    #[Route("/api/game", name: "api_game")]
+    public function apiGame(SessionInterface $session): JsonResponse
+    {
+        $players = $session->get('players', []);
+        if (!is_array($players)) {
+            throw new LogicException('Session data is corrupted.');
+        }
+
+        $playersData = [];
+        foreach ($players as $player) {
+            $playersData[] = [
+                'name' => $player->getName(),
+                'balance' => $player->getBalance(),
+                'hand' => $player->getHand(),
+                'status' => $player->getStatus(),
+            ];
+        }
+
+        return new JsonResponse($playersData);
     }
 }

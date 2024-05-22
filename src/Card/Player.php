@@ -7,16 +7,16 @@ use App\Card\CardHand;
 
 class Player
 {
-    private $name;
-    private $hand;
-    private $balance;
-    private $status;
+    private string $name;
+    private CardHand $hand;
+    private CoinGraphic $coinGraphic;
+    private string $status;
 
-    public function __construct(string $name, int $balance = 0)
+    public function __construct(string $name, float $balance = 0)
     {
         $this->name = $name;
         $this->hand = new CardHand();
-        $this->balance = $balance;
+        $this->coinGraphic = new CoinGraphic($balance);
         $this->status = 'playing';
     }
 
@@ -52,12 +52,17 @@ class Player
 
     public function getBalance(): float
     {
-        return $this->balance;
+        return $this->coinGraphic->getBalance();
     }
 
     public function adjustBalance(float $amount): void
     {
-        $this->balance += $amount;
+        $this->coinGraphic->adjustBalance($amount);
+    }
+
+    public function getBalanceGraphic(): string
+    {
+        return $this->coinGraphic->getGraphicRepresentation();
     }
 
     public function clearHand(): void

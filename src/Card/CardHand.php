@@ -3,18 +3,18 @@
 namespace App\Card;
 
 use App\Card\Card;
-use App\Card\CardGraphic;
-use App\Card\DeckOfCards;
 
 class CardHand
 {
-    private $cards = [];
+    /** @var Card[] */
+    private array $cards = []; // Specify the type for the $cards property
 
     public function addCard(Card $card): void
     {
         $this->cards[] = $card;
     }
 
+    /** @return Card[] */
     public function getCards(): array
     {
         return $this->cards;

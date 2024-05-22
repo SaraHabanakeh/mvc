@@ -9,7 +9,7 @@
 Utdelning av kort:<br>
 
 Varje spelare får två kort.<br>
-Dealern får också två kort.<br></p>
+Dealern får också två kort, en kort visas<br></p>
 
 <p>Kortens värde:<br>
 
@@ -21,15 +21,14 @@ Ess kan vara värda antingen 1 eller 11, beroende på vad som är mest fördelak
 spelaren kan välja att:<br>
 "Hit": Ta ett till kort.<br>
 "Stay": Behålla sin nuvarande hand och avsluta sin tur.<br>
-spelaren blir "Busted" om sin total hand värde är > 21.<br>
-Spelaren får "Black Jack" om sin total hand värde är 21.
-
-</p><p>
+Spelaren blir "Busted" om sin total hand värde är > 21, banken tar sin insats<br>
+Spelaren får "Black Jack" om sin total hand värde är 21, vinner 1.5 sin insats.
+</p>
+<p>
 Dealerns tur:<br>
 
-När alla spelare har avslutat sina turer blir det dealerns tur.<br>
-Dealern drar kort tills sin hand är värd minst 17.<br>
-Om dealerns hand överstiger 21, blir dealern "busted" och förlorar automatiskt mot alla spelare som inte är "busted".</p>
+
+När alla spelare har valt "Stay" är det dealerns tur. Dealern drar kort tills handen är värd minst 17. Om dealerns hand överstiger 21 blir dealern "busted" och förlorar automatiskt mot alla spelare som inte är "busted", de får dubblasina insats. Om dealerns hand är under 21, får alla spelare som har högre handvärde än dealern dubbla sin insats. Spelare som har lägre handvärde förlorar sin insats. Om dealern har högre handvärde än alla spelare, vinner dealern och får alla spelares insatser.</p>
 
 <!-- Knapp för att starta spelet -->
 <form action="{{ path('game_setup') }}" method="post">
