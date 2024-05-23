@@ -6,6 +6,9 @@ use App\Card\Card;
 
 class CardGraphic extends Card
 {
+    /**
+     * Class represent the cards based on their suit and value.
+     */
     /** @var array<string, array<int, string>> */
     private array $representation = [
         // Define the representation array

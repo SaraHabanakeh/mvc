@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Card\DeckOfCards;
@@ -21,16 +22,16 @@ class ApiController
             "Nothing is impossible, the word itself says 'I'm possible'! - Audrey Hepburn",
             "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
         ];
-    
+
         $randomIndex = array_rand($quotes);
         $quote = $quotes[$randomIndex];
-    
+
         $data = [
             'quote' => $quote,
             'date' => date('Y-m-d'),
             'timestamp' => time()
         ];
-    
+
         return new JsonResponse($data, Response::HTTP_OK, [], true); // Ensure the fourth parameter is set to true
     }
 
@@ -115,12 +116,11 @@ class ApiController
     }
 
     #[Route("/api/game", name: "api_game")]
-    public function apiGame(SessionInterface $session): Response
+    public function apiGame(SessionInterface $session): JsonResponse
     {
-        $players = $session->get('players', []);
-        if (!is_array($players)) {
-            throw new LogicException('Session data is corrupted.');
-        }
+        $deck = $session->get('deck');
+        $players = $session->get('players');
+        $bank = $session->get('bank');
 
         $playersData = [];
         foreach ($players as $player) {
@@ -128,12 +128,24 @@ class ApiController
                 $playersData[] = [
                     'name' => $player->getName(),
                     'balance' => $player->getBalance(),
-                    'hand' => $player->getHand(),
+                    'total hand value' => $player->getHandValue(),
                     'status' => $player->getStatus(),
                 ];
             }
         }
 
-        return new JsonResponse($playersData);
+        $bankData = [
+            'name' => $bank->getName(),
+            'balance' => $bank->getBalance(),
+            'total hand value' => $bank->getHandValue(),
+            'status' => $bank->getStatus(),
+        ];
+
+        $data = [
+            'players' => $playersData,
+            'bank' => $bankData,
+        ];
+
+        return new JsonResponse($data);
     }
 }

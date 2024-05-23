@@ -67,8 +67,8 @@ class DeckOfCards
         return count($this->cards);
     }
 
-    public function dealCards(): ?Card
-    {
-        return array_pop($this->cards);
-    }
+    // public function dealCards(): ?Card
+    //{
+    //   return array_pop($this->cards);
+    //}
 }

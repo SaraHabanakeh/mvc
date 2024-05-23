@@ -65,11 +65,6 @@ class Player
         return $this->coinGraphic->getGraphicRepresentation();
     }
 
-    public function clearHand(): void
-    {
-        $this->hand = new CardHand();
-    }
-
     public function getStatus(): string
     {
         return $this->status;

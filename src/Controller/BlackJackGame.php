@@ -84,11 +84,11 @@ class BlackJackGame extends AbstractController
         $players = $session->get('players');
         $bank = $session->get('bank');
 
-        if (!is_array($players) || !$deck instanceof DeckOfCards || !$bank instanceof Player) {
-            throw new LogicException('Session data is corrupted.');
+        $player = $players[$playerIndex] ?? null;
+        if (!$player instanceof Player) {
+            throw new LogicException('Invalid player index.');
         }
 
-        $player = $players[$playerIndex];
         $this->addCardToPlayer($player, $deck);
 
         if ($player->isBusted()) {
@@ -111,15 +111,13 @@ class BlackJackGame extends AbstractController
         ]);
     }
 
+
     #[Route("/stay/{playerIndex}", name: "game_stay")]
     public function stay(int $playerIndex, SessionInterface $session): Response
     {
         $players = $session->get('players');
         $bank = $session->get('bank');
 
-        if (!is_array($players) || !$bank instanceof Player) {
-            throw new LogicException('Session data is corrupted.');
-        }
 
         $player = $players[$playerIndex];
         $player->setStatus('done');
@@ -203,24 +201,4 @@ class BlackJackGame extends AbstractController
         $player->addCard($card);
     }
 
-    #[Route("/api/game", name: "api_game")]
-    public function apiGame(SessionInterface $session): JsonResponse
-    {
-        $players = $session->get('players', []);
-        if (!is_array($players)) {
-            throw new LogicException('Session data is corrupted.');
-        }
-
-        $playersData = [];
-        foreach ($players as $player) {
-            $playersData[] = [
-                'name' => $player->getName(),
-                'balance' => $player->getBalance(),
-                'hand' => $player->getHand(),
-                'status' => $player->getStatus(),
-            ];
-        }
-
-        return new JsonResponse($playersData);
-    }
 }
