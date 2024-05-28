@@ -141,10 +141,6 @@ class BlackJackGame extends AbstractController
         $players = $session->get('players');
         $bank = $session->get('bank');
 
-        if (!is_array($players) || !$deck instanceof DeckOfCards || !$bank instanceof Player) {
-            throw new LogicException('Session data is corrupted.');
-        }
-
         while ($bank->getHandValue() < 17) {
             $this->addCardToPlayer($bank, $deck);
         }

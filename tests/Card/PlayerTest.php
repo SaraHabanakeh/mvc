@@ -110,6 +110,4 @@ class PlayerTest extends TestCase
 
         $this->assertTrue($player->hasBlackJack());
     }
-
-
 }

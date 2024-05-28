@@ -157,3 +157,40 @@ h1 {
 .bank {
   margin-left: 40%;
 }
+
+.library {
+  background-color: rgb(251, 231, 164);
+  padding: 10%;
+}
+
+.home{
+  background-color: rgb(230, 203, 240);
+  padding: 10%;
+}
+
+.card-base{
+  background-color: rgb(175, 230, 230);
+  padding: 10%;
+}
+
+.api-main{
+  background-color: rgb(232, 199, 152);
+  padding: 10%;
+}
+
+.table thead {
+  background-color: #fefefd;
+}
+
+.table a.btn {
+  margin-right: 5px;
+}
+
+.table tbody tr {
+  margin-top: 10px;
+}
+
+.table td {
+  padding: 15px;
+}
+

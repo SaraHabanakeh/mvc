@@ -1,0 +1,13 @@
+{# templates/book/one_book.html.twig #}
+
+{% extends 'base6.html.twig' %}
+
+{% block title %}Book Details{% endblock %}
+
+{% block main %}
+    <h1>{{ book.title }}</h1>
+    <p>By {{ book.author }}</p>
+    <img src="{{ asset(book.image) }}" alt="{{ book.title }}" style="width: 100px; height: auto;">
+
+    <button><a href="{{ path('app_book') }}">Back to Library</a></button>
+{% endblock %}

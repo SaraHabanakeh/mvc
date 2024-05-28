@@ -5,10 +5,12 @@
 {% block main %}
 
 <h2>Json Api Routes:</h2>
-<a href="{{ path('api-quote') }}">Quote:</a><p>Get a random daily quote.</p>
-<a href="{{ path('api-deck') }}">Cards:</a><p>Get a sorted deck of cards.</p>
-<a href="{{ path('api-shuffle') }}">shuffle</a><p>Shuffle the deck of cards.</p>
-<a href="{{ path('api_draw_cards', { 'number': 0 }) }}">Draw</a><p>Draw card/cards from the deck.</p>
-<a href="{{ path('api_game') }}">Game</a><p>Displays game status</p>
+<a href="{{ path('api-quote') }}"><strong>api/quote:</strong></a><p>Get a random daily quote.</p>
+<a href="{{ path('api-deck') }}"><strong>api/deck:</strong></a><p>Get a sorted deck of cards.</p>
+<a href="{{ path('api-shuffle') }}"><strong>api/deck/shuffle:</strong></a><p>Shuffle the deck of cards.</p>
+<a href="{{ path('api_draw_cards', { 'number': 0 }) }}"><strong>api/deck/draw/{number}:</strong></a><p>Draw card/cards from the deck.</p>
+<a href="{{ path('api_game') }}"><strong>api/game:</strong></a><p>Displays game status</p>
+<a href="{{ path('show_books') }}"><strong>api/library/books:</strong></a><p>Show all the books in the library.</p>
+<a href="{{ path('book_by_isbn', {'isbn': 1234567}) }}"><strong>api/library/book/{isbn}:</strong></a><p>Find a book by its Isbn.</p>
 
 {% endblock %}

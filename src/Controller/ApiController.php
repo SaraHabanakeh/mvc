@@ -5,6 +5,18 @@ namespace App\Controller;
 use App\Card\DeckOfCards;
 use App\Card\CardHand;
 use App\Card\Player;
+
+
+
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+
+use App\Entity\Book;
+use App\Entity\AddBook;
+use App\Repository\BookRepository;
+use Doctrine\Persistence\ManagerRegistry;
+
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,7 +44,7 @@ class ApiController
             'timestamp' => time()
         ];
 
-        return new JsonResponse($data, Response::HTTP_OK, [], true); // Ensure the fourth parameter is set to true
+        return new JsonResponse($data, Response::HTTP_OK);
     }
 
     #[Route("/api/deck", name:"api-deck")]
@@ -43,7 +55,7 @@ class ApiController
 
         $rows = array_chunk($sortedDeck, 13, true);
 
-        return new JsonResponse($rows, JsonResponse::HTTP_OK, [], true);
+        return new JsonResponse($rows, JsonResponse::HTTP_OK);
     }
 
     #[Route("/api/deck/shuffle", name:"api-shuffle", methods: ['POST', 'GET'])]
@@ -128,7 +140,7 @@ class ApiController
                 $playersData[] = [
                     'name' => $player->getName(),
                     'balance' => $player->getBalance(),
-                    'total hand value' => $player->getHandValue(),
+                    'total hand value' => $player->getHand(),
                     'status' => $player->getStatus(),
                 ];
             }
@@ -148,4 +160,5 @@ class ApiController
 
         return new JsonResponse($data);
     }
+
 }

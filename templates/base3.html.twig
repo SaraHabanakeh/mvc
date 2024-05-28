@@ -16,14 +16,15 @@
     <body>
         <nav>
             <ul>
-                <li class='item-1'><a href="{{ path('card_start') }}">Card Game</a></li>
-                <li class='item-2'><a href="{{ path('card_deck') }}">Card Deck</a></li>
-                <li class='item-3'><a href="{{ path('card_shuffle') }}">Shuffle Card</a></li>
-                <li class='item-4'><a href="{{ path('card_draw') }}">Draw Card</a></li>
+                <li class='item-1'><a href="{{ path('me') }}">Home</a></li>
+                <li class='item-2'><a href="{{ path('card_start') }}">Card Game</a></li>
+                <li class='item-3'><a href="{{ path('card_deck') }}">Card Deck</a></li>
+                <li class='item-4'><a href="{{ path('card_shuffle') }}">Shuffle Card</a></li>
+                <li class='item-1'><a href="{{ path('card_draw') }}">Draw Card</a></li>
             </ul>
         </nav>
     </body>
-     <main>
+     <main class="card-base">
         {% block main %}{% endblock %}
      </main>
     <footer>

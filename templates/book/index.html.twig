@@ -1,0 +1,40 @@
+{# templates/book/index.html.twig #}
+
+{% extends 'base6.html.twig' %}
+
+{% block title %}Library{% endblock %}
+
+{% block main %}
+    <h1>Library</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td><a href="{{ path('show_book', {title: book.title}) }}">{{ book.title }}</a></td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>
+                        {% if book.image %}
+                            <img src="{{ asset(book.image) }}" alt="{{ book.title }}" style="max-width: 70px;">
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button><a href="{{ path('edit_book', {title: book.title}) }}" class="btn btn-primary">Edit</a></button>
+                        <button><a href="{{ path('delete_book', {title: book.title}) }}" class="btn btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this book?');">Delete</a></button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button><a href="{{ path('book_new') }}" class="btn btn-primary">Add New Book</a></button>
+{% endblock %}
