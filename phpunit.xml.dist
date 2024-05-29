@@ -27,11 +27,23 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+<<<<<<< HEAD
         <report>
             <clover outputFile="docs/coverage.clover"/>
             <html outputDirectory="docs/coverage" lowUpperBound="35" highLowerBound="70"/>
         </report>
     </coverage>
+=======
+          <report>
+            <clover outputFile="docs/coverage.clover"/>
+            <html outputDirectory="docs/coverage" lowUpperBound="35" highLowerBound="70"/>
+        </report>
+
+    </coverage>
+    <logging>
+        <junit outputFile="docs/junit.xml" />
+    </logging>
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />

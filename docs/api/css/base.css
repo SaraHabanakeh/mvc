@@ -99,6 +99,10 @@
 /* Base Styles
 -------------------------------------------------- */
 body {
+<<<<<<< HEAD
+=======
+    background-color: #fff;
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
     color: var(--text-color);
     font-family: var(--font-primary);
     font-size: var(--text-md);
@@ -494,7 +498,11 @@ div.phpdocumentor-list > ul,
 ol.phpdocumentor-list,
 ul.phpdocumentor-list {
     margin-top: 0;
+<<<<<<< HEAD
     padding-left: var(--spacing-md);
+=======
+    padding-left: var(--spacing-lg);
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
     margin-bottom: var(--spacing-sm);
 }
 

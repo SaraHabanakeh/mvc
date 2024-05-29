@@ -1,8 +1,13 @@
 {
+<<<<<<< HEAD
 
     "name": "sahb23/mvc-course",
     "description": "Teacher material",
     "type": "project",
+=======
+    "name": "sahb23/mvc-course",
+    "description": "Student Material",
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
@@ -13,9 +18,15 @@
         "doctrine/dbal": "^3",
         "doctrine/doctrine-bundle": "^2.12",
         "doctrine/doctrine-migrations-bundle": "^3.3",
+<<<<<<< HEAD
         "doctrine/orm": "^3.1",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.27",
+=======
+        "doctrine/orm": "^3.2",
+        "phpdocumentor/reflection-docblock": "^5.4",
+        "phpstan/phpdoc-parser": "^1.29",
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
         "symfony/asset": "7.0.*",
         "symfony/asset-mapper": "7.0.*",
         "symfony/console": "7.0.*",
@@ -37,11 +48,19 @@
         "symfony/runtime": "7.0.*",
         "symfony/security-bundle": "7.0.*",
         "symfony/serializer": "7.0.*",
+<<<<<<< HEAD
         "symfony/stimulus-bundle": "^2.16",
         "symfony/string": "7.0.*",
         "symfony/translation": "7.0.*",
         "symfony/twig-bundle": "7.0.*",
         "symfony/ux-turbo": "^2.16",
+=======
+        "symfony/stimulus-bundle": "^2.17",
+        "symfony/string": "7.0.*",
+        "symfony/translation": "7.0.*",
+        "symfony/twig-bundle": "7.0.*",
+        "symfony/ux-turbo": "^2.17",
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
         "symfony/validator": "7.0.*",
         "symfony/web-link": "7.0.*",
         "symfony/webpack-encore-bundle": "^2.1",
@@ -90,16 +109,27 @@
             "@auto-scripts"
         ],
         "csfix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src tests",
+<<<<<<< HEAD
         "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src tests --dry-run -v",
+=======
+        "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php  fix src tests --dry-run -v",
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
         "phpmd": "tools/phpmd/vendor/bin/phpmd . text tools/phpmd/phpmd.xml || true",
         "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon || true",
         "lint": [
             "@phpmd",
             "@phpstan"
         ],
+<<<<<<< HEAD
 
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "phpdoc": "tools/phpdoc/phpdoc --config=tools/phpdoc/phpdoc.xml"
+=======
+        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
+        "phpdoc": "tools/phpdoc/phpdoc --config=tools/phpdoc/phpdoc.xml",
+        "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=tools/phpmetrics/phpmetrics.json"
+
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -120,5 +150,8 @@
         "symfony/stopwatch": "7.0.*",
         "symfony/web-profiler-bundle": "7.0.*"
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
 }

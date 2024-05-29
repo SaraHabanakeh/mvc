@@ -16,6 +16,7 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+<<<<<<< HEAD
     //    /**
     //     * @return Product[] Returns an array of Product objects
     //     */
@@ -37,12 +38,23 @@ class ProductRepository extends ServiceEntityRepository
      * @return Product[] Returns an array of Product objects
      */
     public function findByMinimumValue($value): array
+=======
+    /**
+     * Find all products having a value above the specified one.
+     *
+     * @param int $value The minimum value to filter products by.
+     *
+     * @return Product[] Returns an array of Product objects.
+     */
+    public function findByMinimumValue(int $value): array
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.value >= :value')
             ->setParameter('value', $value)
             ->orderBy('p.value', 'ASC')
             ->getQuery()
+<<<<<<< HEAD
             ->getResult()
         ;
     }
@@ -52,6 +64,19 @@ class ProductRepository extends ServiceEntityRepository
  * @return [][] Returns an array of arrays (i.e. a raw data set)
  */
     public function findByMinimumValue2($value): array
+=======
+            ->getResult();
+    }
+
+    /**
+     * Find all products having a value above the specified one using SQL.
+     *
+     * @param int $value The minimum value to filter products by.
+     *
+     * @return array<array<string, mixed>> Returns an array of associative arrays (i.e. a raw data set).
+     */
+    public function findByMinimumValue2(int $value): array
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
     {
         $conn = $this->getEntityManager()->getConnection();
 

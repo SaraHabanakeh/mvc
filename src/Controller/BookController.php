@@ -33,6 +33,7 @@ class BookController extends AbstractController
             $book->setAuthor($data['author']);
             $book->setIsbn($data['isbn']);
             $book->setImage($data['image']);
+<<<<<<< HEAD
     
             $entityManager = $doctrine->getManager();
             $entityManager->persist($book);
@@ -41,6 +42,16 @@ class BookController extends AbstractController
             return $this->redirectToRoute('app_book');
         }
     
+=======
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($book);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_book');
+        }
+
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
         return $this->render('book/create.html.twig');
     }
 
@@ -70,6 +81,7 @@ class BookController extends AbstractController
             $book->setAuthor($data['author']);
             $book->setIsbn($data['isbn']);
             $book->setImage($data['image']);
+<<<<<<< HEAD
     
             $entityManager = $doctrine->getManager();
             $entityManager->flush();
@@ -81,6 +93,19 @@ class BookController extends AbstractController
             'book' => $book
         ]);
     
+=======
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_book');
+        }
+
+        return $this->render('book/edit.html.twig', [
+            'book' => $book
+        ]);
+
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
     }
 
     #[Route('/library/delete/{title}', name: 'delete_book')]

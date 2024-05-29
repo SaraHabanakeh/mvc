@@ -1,0 +1,3 @@
+//Try to validate your code on level 9 and then you can downsize the level to an acceptable one.
+
+tools/phpstan/vendor/bin/phpstan analyse -l 9 src

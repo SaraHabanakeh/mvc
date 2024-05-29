@@ -14,6 +14,15 @@ Encore
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
 
+<<<<<<< HEAD
+=======
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]'
+    })
+
+
+>>>>>>> 1152db6 (Reinitializing and reconnecting to GitHub repository)
     /*
      * ENTRY CONFIG
      *
